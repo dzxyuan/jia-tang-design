@@ -1,0 +1,45 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js build output
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# local env files (含密钥，绝不提交)
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# IDE / editor
+.trae/
+.vscode/
+.idea/
+
+# deployment temp
+src-pkg/
+jt-deploy-*/
+
+# backup / junk
+*.bak
+*.tmp
+启动预览.bat

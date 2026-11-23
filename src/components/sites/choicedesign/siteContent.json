@@ -1,0 +1,544 @@
+{
+  "meta": {
+    "title": "加糖 | UI 设计师｜个人设计网站",
+    "description": "加糖，UI 设计师，专注数字产品体验设计，擅长从需求梳理到界面落地，重视设计解决真实问题，探索 AI 与设计结合的实践。"
+  },
+  "brand": {
+    "logo": {
+      "sprite": "/api/uploads/sites/choicedesign/assets/sprite.svg",
+      "symbol": "04dc25b799ea521a3e09e9d548f9140e",
+      "image": "/api/uploads/sites/choicedesign/uploads/1794973284144-jiatang-logo.svg"
+    },
+    "name": "JIATANG",
+    "sloganEn": "UI UX design",
+    "sloganCn": "创意改变生活",
+    "colors": {
+      "primary": "#22ba08"
+    },
+    "navIcon": "/api/uploads/sites/choicedesign/uploads/1794973471341-image-958--1-.png"
+  },
+  "contact": {
+    "link": "https://work.weixin.qq.com/kfid/kfce58c284ac7b75204",
+    "talk": "联系我",
+    "location": [
+      "广东省深圳市罗湖区"
+    ],
+    "rows": [
+      {
+        "label": "邮箱",
+        "value": "937222819@qq.com"
+      },
+      {
+        "label": "微信",
+        "value": "dzx53009"
+      },
+      {
+        "label": "电话",
+        "value": "15116077295"
+      }
+    ],
+    "socials": [
+      {
+        "label": "微信",
+        "href": "https://work.weixin.qq.com/kfid/kfce58c284ac7b75204",
+        "icon": "/api/uploads/sites/choicedesign/assets/social-1.png"
+      },
+      {
+        "label": "站酷",
+        "href": "https://www.zcool.com.cn/u/ZOTI0OTk1NTI",
+        "icon": "/api/uploads/sites/choicedesign/assets/social-2.png"
+      },
+      {
+        "label": "Behance",
+        "href": "https://www.behance.net/DukeWang_C",
+        "icon": "/api/uploads/sites/choicedesign/assets/social-3.png"
+      }
+    ],
+    "qrcodes": [
+      {
+        "image": "/api/uploads/sites/choicedesign/assets/qr-duke.jpg",
+        "text": "扫码查看",
+        "alt": "微信二维码"
+      },
+      {
+        "image": "/api/uploads/sites/choicedesign/assets/qr-mp.jpg",
+        "text": "扫码查看",
+        "alt": "公众号二维码"
+      }
+    ],
+    "copyright": "© 加糖design 2024-2026. All rights reserved",
+    "icp": "",
+    "legal": [
+      "本网站设计、源代码及其中所展示之作品著作权",
+      "均属于加糖design个人所有"
+    ]
+  },
+  "nav": [
+    {
+      "title": "Home",
+      "target": "#kv"
+    },
+    {
+      "title": "About",
+      "target": "#about"
+    },
+    {
+      "title": "Works",
+      "target": "#case"
+    },
+    {
+      "title": "More Things",
+      "target": "#recommend"
+    },
+    {
+      "title": "Contact",
+      "target": "#footer"
+    }
+  ],
+  "hero": {
+    "words": [
+      "加糖",
+      "#UI设计◍",
+      "A"
+    ],
+    "icons": [
+      {
+        "src": "/api/uploads/sites/choicedesign/uploads/1794971473073-Frame--7-.png",
+        "alt": ""
+      },
+      {
+        "src": "/api/uploads/sites/choicedesign/uploads/1794972273630-Frame-427323081--5-.png",
+        "alt": ""
+      },
+      {
+        "src": "/api/uploads/sites/choicedesign/uploads/1794970275420-Frame--4-.png",
+        "alt": ""
+      },
+      {
+        "src": "/api/uploads/sites/choicedesign/uploads/1794970279773-Frame--5-.png",
+        "alt": ""
+      },
+      {
+        "src": "/api/uploads/sites/choicedesign/uploads/1794970650872-Frame--6-.png",
+        "alt": ""
+      },
+      {
+        "src": "/api/uploads/sites/choicedesign/assets/icon-6.png",
+        "alt": ""
+      },
+      {
+        "src": "/api/uploads/sites/choicedesign/uploads/1794972143787-Frame-427323082--2-.png",
+        "alt": ""
+      },
+      {
+        "src": "/api/uploads/sites/choicedesign/assets/icon-8.png",
+        "alt": ""
+      },
+      {
+        "src": "/api/uploads/sites/choicedesign/assets/icon-9.png",
+        "alt": ""
+      }
+    ],
+    "tips": {
+      "image": "/api/uploads/sites/choicedesign/uploads/1794971347940-Frame-427323080.svg",
+      "text": "（点击播放介绍视频）",
+      "href": ""
+    },
+    "video": "/api/uploads/sites/choicedesign/assets/recommend-video.mp4"
+  },
+  "intro": {
+    "model": "/api/uploads/sites/choicedesign/uploads/1794985428568-lattice_structured_man_figurine.glb",
+    "items": [
+      {
+        "title": "关于我",
+        "lines": [
+          "5年UI设计经验",
+          "以解决用户问题为出发点",
+          "兼顾界面表达与落地可行性",
+          "-"
+        ],
+        "en": [
+          "ABOUT",
+          "ME"
+        ],
+        "className": "item-1",
+        "isForward": true,
+        "fontSize": 0.66,
+        "lineSizes": [
+          0.8,
+          0.3,
+          0.3,
+          null
+        ],
+        "lineGaps": [
+          null,
+          0.4,
+          0,
+          0.1
+        ],
+        "titleSize": 0.3
+      },
+      {
+        "title": "工作经历",
+        "lines": [
+          "在创意的世界里",
+          "特立但不独行"
+        ],
+        "en": [
+          "EXPERIENCE"
+        ],
+        "className": "item-3",
+        "isForward": true,
+        "titleSize": 0.3
+      }
+    ],
+    "experience": {
+      "title": "工作经历",
+      "titleEn": [
+        "WORK",
+        "EXPERIENCE"
+      ],
+      "items": [
+        {
+          "period": "2025.05 - 至今",
+          "company": "深圳智芯神元科技有限公司",
+          "role": "高级 UI 设计师",
+          "desc": "负责公司 B 端产品与移动端界面设计，主导设计规范与组件库落地。"
+        },
+        {
+          "period": "2020.03 - 2022.05",
+          "company": "某某数字创意工作室",
+          "role": "UI 设计师",
+          "desc": "参与品牌官网、营销活动与小程序视觉设计，配合开发完成上线。"
+        },
+        {
+          "period": "2019.07 - 2020.02",
+          "company": "某某广告有限公司",
+          "role": "视觉设计师",
+          "desc": "负责活动主视觉、海报与展陈物料设计，参与提案与落地执行。"
+        }
+      ]
+    },
+    "footLeft": "创意 让美好发生",
+    "footRight": "JiaTang Design ., Ltd."
+  },
+  "works": {
+    "sprite": "/api/uploads/sites/choicedesign/assets/sprite.svg#0b61e9ced43e8a634dc2ecba9b57c4a1",
+    "mask": "/api/uploads/sites/choicedesign/assets/kv-mask.png",
+    "categories": [
+      "全部 ALL",
+      "营销活动",
+      "品牌传播",
+      "广告策划/创意设计",
+      "会展会务",
+      "IP 文创周边/礼品定制",
+      "影视动画制作"
+    ],
+    "items": [
+      {
+        "id": "25",
+        "title": "智芯AI学堂 | 科创教育小程序：搭建轻量化青少年 AI 学习体验平台",
+        "labels": [
+          "UI设计",
+          "小程序"
+        ],
+        "cover": "/api/uploads/sites/choicedesign/uploads/1794909948429-01.webp",
+        "href": "/works/25"
+      },
+      {
+        "id": "24",
+        "title": "礼来 | 礼来父亲节科普行动：别让鼾声成为健康的休止符",
+        "labels": [
+          "品牌活动",
+          "延展设计"
+        ],
+        "cover": "/api/uploads/sites/choicedesign/cases/case-2.png",
+        "href": "/works/24"
+      },
+      {
+        "id": "23",
+        "title": "住友电工 | 2026 住友电工 链博会展台全案",
+        "labels": [
+          "展会",
+          "链博会"
+        ],
+        "cover": "/api/uploads/sites/choicedesign/cases/case-3.jpg",
+        "href": "/works/23"
+      },
+      {
+        "id": "22",
+        "title": "金山枫泾 | 2026金山乡村艺术季活动全案",
+        "labels": [
+          "市集",
+          "展陈"
+        ],
+        "cover": "/api/uploads/sites/choicedesign/cases/case-4.png",
+        "href": "/works/22"
+      },
+      {
+        "id": "21",
+        "title": "CHOICE | 2025 CHOICE｜我们的年度闪光记忆",
+        "labels": [
+          "年度总结",
+          "案例"
+        ],
+        "cover": "/api/uploads/sites/choicedesign/cases/case-5.webp",
+        "href": "/works/21"
+      },
+      {
+        "id": "19",
+        "title": "SHAPHAR | SHAPHAR 2025进博会｜展台设计搭建",
+        "labels": [
+          "展会设计",
+          "空间设计"
+        ],
+        "cover": "/api/uploads/sites/choicedesign/cases/case-6.webp",
+        "href": "/works/19"
+      }
+    ]
+  },
+  "partners": {
+    "layout": "dense",
+    "titleCn": "我们的合作伙伴",
+    "titleEn": [
+      "OUR",
+      "PARTNERS"
+    ],
+    "groups": [
+      [
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-1.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-2.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-3.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-4.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-5.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-6.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-7.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-8.png",
+          "alt": ""
+        }
+      ],
+      [
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-9.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-10.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-11.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-12.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-13.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-14.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-15.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-16.png",
+          "alt": ""
+        }
+      ],
+      [
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-17.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-18.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-19.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-20.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-21.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-22.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-23.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-24.png",
+          "alt": ""
+        }
+      ],
+      [
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-25.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-26.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-27.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-28.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-29.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-30.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-31.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-32.png",
+          "alt": ""
+        }
+      ],
+      [
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-33.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-34.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-35.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-36.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-37.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-38.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-39.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-40.png",
+          "alt": ""
+        }
+      ],
+      [
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-41.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-42.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-43.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-44.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-45.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-46.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-47.png",
+          "alt": ""
+        },
+        {
+          "src": "/api/uploads/sites/choicedesign/partners/partner-48.png",
+          "alt": ""
+        }
+      ]
+    ]
+  },
+  "recommend": {
+    "video": "/api/uploads/sites/choicedesign/assets/recommend-video.mp4",
+    "poster": "/api/uploads/sites/choicedesign/assets/recommend-bg.jpg",
+    "logo": "/api/uploads/sites/choicedesign/assets/recommend-logo.png",
+    "moreLink": "https://mp.weixin.qq.com/s/o7NsxbxZUqd_v4O53d_3Tg",
+    "moreText": "MORE",
+    "footLeft": "Share Will Our Culture",
+    "footRight": [
+      "CHOICE",
+      "Solves All"
+    ]
+  },
+  "about": {
+    "title": [
+      "More",
+      "Things"
+    ],
+    "moreText": "MORE",
+    "moreLink": "https://www.choicedesign.cn/more"
+  },
+  "contactButton": {
+    "image": "/api/uploads/sites/choicedesign/assets/contact.png",
+    "text": "CONTACT US · LET'S TALK ·"
+  },
+  "header": {
+    "navIcon": "/api/uploads/sites/choicedesign/assets/cat-nav.png"
+  },
+  "menu": {
+    "cat": "/api/uploads/sites/choicedesign/assets/cat.png"
+  }
+}

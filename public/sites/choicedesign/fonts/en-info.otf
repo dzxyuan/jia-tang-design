@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Choice"/>
+    <meta name="description" content="Choice"/>
+      <title>CHOICE 以全案营销-品牌-展会-空间-IP等全维度解决方案服务世界百强企业</title>
+      <link rel="shortcut icon" href="https://www.choicedesign.cn/choice_logo.svg" type="image/x-icon">
+      <meta id="Key" name="Keywords" content="上海俏思品牌设计有限公司/俏思品牌设计/俏思/上海窍思文化传媒发展有限公司/窍猫文创/choicedesign/choice" />
+      <meta id="Des" name="Description" content="俏思品牌（Choicedesign）主要从事品牌设计，顶层设计及创意。我们的客户有，波士顿科学 Boston Scientific（美国上市集团），阿斯利康 AstraZeneca，罗氏 Roche，杜邦 Dupont，汉高集团 Henkel，交大昂立教育集团等世界知名企业。
+我们注重设计的本质，以项目质量为首要，切身为客户打造适合客户的设计解决方案。我们注重自由，创造力，团队精神，来到俏思即是家，对家人们，我们注重身心健康与快乐，我们高效，几乎不加班。我们关注生活，才更懂得设计。
+我们相信，每一个有" />
+      <script>
+          !(function(c,b,d,a){c[a]||(c[a]={});c[a]=
+              {
+                  endpoint: 'https://proj-xtrace-2e3517562abcb7aa3961438e23a8d76c-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1559613673163297-cn-hangzhou&service_id=fcu4moywpt@d3ff907230c289956d626',
+                  // 设置环境信息，参考值：'prod' | 'gray' | 'pre' | 'daily' | 'local'
+                  env: 'prod',
+                  // 设置路由模式， 参考值：'history' | 'hash'
+                  spaMode: 'history',
+                  collectors: {
+                      // 页面性能指标监听开关，默认开启
+                      perf: true,
+                      // WebVitals指标监听开关，默认开启
+                      webVitals: true,
+                      // Ajax监听开关，默认开启
+                      api: true,
+                      // 静态资源开关，默认开启
+                      staticResource: true,
+                      // JS错误监听开关，默认开启
+                      jsError: true,
+                      // 控制台错误监听开关，默认开启
+                      consoleError: true,
+                      // 用户行为监听开关，默认开启
+                      action: false,
+                  },
+                  // 链路追踪配置开关，默认关闭
+                  tracing: false,
+              }
+              with(b)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("crossorigin","",src=d)
+          })(window, document, "https://sdk.rum.aliyuncs.com/v2/browser-sdk.js", "__rum");
+      </script>
+    <script type="module" crossorigin src="/assets/index-b229e0c3.js"></script>
+    <link rel="stylesheet" href="/assets/index-31868fe1.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/imagesloaded.pkgd.min.js"></script>
+		<script src="/gsap.min.js"></script>
+    
+  </body>
+</html>
