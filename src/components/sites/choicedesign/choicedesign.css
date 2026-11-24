@@ -41,7 +41,7 @@ body{margin:0;overflow:overlay}
 .fr-wrapper{width:100%;position:relative}
 .fr-container{position:relative;width:100%;z-index:2}
 .fr-bg{position:absolute;left:0;right:0;height:100%;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-html{font-size:5.2083333333vw}
+html{font-size: min(5.2083333333vw, 100px)}
 .fr-header{height:1rem;position:fixed;left:0;top:0;width:100%;z-index:3;display:flex;flex-direction:row;align-items:center;justify-content:space-between;box-sizing:border-box;padding:0 var(--padding-1);transition:all .3s ease}
 .fr-header--fold{transform:translateY(-100%)}
 .fr-header-left{position:relative}
@@ -143,7 +143,8 @@ html{font-size:5.2083333333vw}
 .mobile .fr-header{z-index:99}
 .mobile .fr-header .fr-header-right .btn-talk{display:none}
 @media screen and (max-width: 768px){
-html{font-size:70px}
+/* 移动端：按 750px 设计稿等比缩放，保留原变量调整 */
+html{font-size: calc(100vw * 100 / 750)}
 :root{--padding-1: .2rem;--container-width: 100%;--font-size-xxs: .18rem;--font-size-xs: .2rem;--font-size-s: .22rem;--font-size-base: .24rem;--font-size-ms: .26rem;--font-size-m: .28rem;--font-size-l: .36rem;--font-size-xl: .38rem;--font-size-xxl: .4rem;--font-size-large: .44rem;--font-size-xxxl: .48rem;--font-size-xxxxl: .52rem;--font-size-xxxxxl: .6rem;--font-size-xxxxxxxl: 1.2rem}
 .fr-footer{height:9rem}
 .fr-footer-hd{height:1rem}

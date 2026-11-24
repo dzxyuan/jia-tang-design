@@ -3,7 +3,17 @@ type MotionOptions = {
   onFold: (visible: boolean) => void;
 };
 
+/** 移动端检测（与 layout.tsx 同步逻辑） */
+function isMobile() {
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    ) || window.matchMedia("(max-width: 768px)").matches
+  );
+}
+
 export async function initHomeMotion({ onSkin, onFold }: MotionOptions) {
+  const mobile = isMobile();
   const { gsap } = await import("gsap");
   const { ScrollTrigger } = await import("gsap/ScrollTrigger");
   const { ScrollToPlugin } = await import("gsap/ScrollToPlugin");
@@ -37,14 +47,144 @@ export async function initHomeMotion({ onSkin, onFold }: MotionOptions) {
   };
 
   const ctx = gsap.context(() => {
+    /* 顶部 fold + 换肤：桌面/移动端都要，但移动端简化 */
     ScrollTrigger.create({
       start: 0,
       end: "max",
       onUpdate: (self) => {
         const y = self.scroll();
         onFold(!(y > 160 && self.direction === 1));
+        // intro 进入视口时换肤为黑色（intro/案例都是白字背景）
+        const intro = document.querySelector<HTMLElement>(".mod-introduce");
+        if (intro) {
+          const rect = intro.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.4 && rect.bottom > 0) {
+            onSkin("white");
+          }
+        }
       },
     });
+
+    if (mobile) {
+      /* ============= 移动端简化版 =============
+         不走 pin / scrub / 横向 case 滚动 / 整屏吸附
+         只保留 enter/leave 状态切换 + 基础入场动画 */
+
+      // 顶部 KV：简单的入场淡出
+      ScrollTrigger.create({
+        trigger: ".mod-kv .kv-wrap",
+        start: "top top",
+        end: "bottom top",
+        toggleClass: { className: "mobile-scrolled", targets: ".mod-kv" },
+      });
+
+      // intro 激活（沿用 syncIntroStage 的 scroll 监听）
+
+      // case 模块：进入时加 enter 类，移动端已是纵向列表
+      const caseEl = document.querySelector(".mod-case");
+      ScrollTrigger.create({
+        trigger: ".mod-case",
+        start: "top bottom",
+        end: "bottom bottom",
+        onEnter: () => {
+          caseEl?.classList.remove("leave");
+          caseEl?.classList.add("enter");
+          onSkin("white");
+        },
+        onEnterBack: () => {
+          caseEl?.classList.remove("leave");
+          caseEl?.classList.add("enter");
+          onSkin("white");
+        },
+        onLeave: () => {
+          caseEl?.classList.add("leave");
+          caseEl?.classList.remove("enter");
+        },
+      });
+
+      // partner 模块：进入淡入
+      ScrollTrigger.create({
+        trigger: ".mod-partner",
+        start: "top+=100px bottom",
+        end: "top center",
+        onEnter: () => {
+          document
+            .querySelector(".mod-partner .partner-title")
+            ?.classList.add("enter");
+          document
+            .querySelectorAll(".mod-partner .partner-list-group")
+            .forEach((el) => el.classList.add("enter"));
+        },
+      });
+
+      // recommend 模块
+      const rec = document.querySelector(".mod-recommend");
+      ScrollTrigger.create({
+        trigger: ".mod-recommend",
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => rec?.classList.add("enter"),
+        onEnterBack: () => rec?.classList.add("enter"),
+        onLeave: () => rec?.classList.remove("enter"),
+        onLeaveBack: () => rec?.classList.remove("enter"),
+      });
+      gsap.fromTo(
+        ".recommend-inner .recommend-title",
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: ".mod-recommend",
+            start: "top bottom",
+            end: "top center",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+      gsap.fromTo(
+        ".recommend-inner .btn-more",
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: ".mod-recommend",
+            start: "top bottom",
+            end: "top center",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+
+      // about 模块
+      ScrollTrigger.create({
+        trigger: ".mod-about",
+        start: "top bottom",
+        end: "bottom bottom",
+        onEnter: () => {
+          gsap.to(".about-title p", {
+            y: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.1,
+          });
+          gsap.to(".about-wrap .btn-more", { y: 0, scale: 1, opacity: 1, duration: 0.6 });
+        },
+      });
+
+      ScrollTrigger.refresh();
+      syncIntroStage();
+      window.addEventListener("scroll", syncIntroStage, { passive: true });
+
+      return () => {
+        window.removeEventListener("scroll", syncIntroStage);
+        ctx.revert();
+      };
+    }
+
+    /* ============= 桌面全功能版（以下原逻辑） ============= */
 
     /* ---------------- KV ---------------- */
     ScrollTrigger.create({

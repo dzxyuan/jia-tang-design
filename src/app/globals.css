@@ -6,10 +6,27 @@
   box-sizing: border-box;
 }
 
+/* ---- 移动端全局基础 ---- */
+html, body {
+  -webkit-text-size-adjust: 100%; /* 禁止 iOS 自动放大文字 */
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent; /* 去掉点击闪烁 */
+  -webkit-touch-callout: none;
+}
+
+button,
+a,
+[role="button"] {
+  touch-action: manipulation; /* 消除 300ms 延迟 */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 body {
   margin: 0;
   padding: 0;
   background: #000;
+  overscroll-behavior-y: none; /* 防止下拉刷新/橡皮筋效果干扰 */
 }
 
 a {
@@ -29,6 +46,8 @@ p {
 img {
   display: block;
   max-width: 100%;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 button {
@@ -37,4 +56,19 @@ button {
   background: none;
   padding: 0;
   cursor: pointer;
+}
+
+/* ---- iOS 安全区 ---- */
+.mobile {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+/* 固定在顶部的元素再叠加一次安全区 */
+.mobile .fr-header {
+  padding-top: env(safe-area-inset-top);
+}
+/* 固定在底部的联系按钮避开 home indicator */
+.mobile .contact-button {
+  bottom: calc(env(safe-area-inset-bottom) + .4rem);
+  right: calc(env(safe-area-inset-right) + .4rem);
 }
