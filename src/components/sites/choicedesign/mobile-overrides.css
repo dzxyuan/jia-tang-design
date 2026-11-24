@@ -1,0 +1,569 @@
+/* =========================================================
+ * 移动端统一样式覆盖（仅在 <html class="mobile"> 下生效）
+ * 所有 PC 端布局/字号/交互完全不受影响
+ *
+ * 设计原则：
+ *   1. 可读性：正文 ≥ 14px（iOS 可阅读下限），标签 ≥ 13px
+ *   2. 对比：KV(门面) > About > Introduce > Case/Partner > 正文 > 标签
+ *   3. 对齐：统一左右 padding = .4rem；模块间距对称
+ *   4. 亲密：同类元素用分组容器；卡片有明显分隔
+ *   5. 交互：去掉 iOS 上 fixed 抖动的元素；触摸目标 > 48px
+ * ========================================================= */
+
+/* ---- 全局变量：移动端 rem 基准已由 html{font-size:calc(100vw*100/750)} 处理 ---- */
+/* iPhone 14 (390px): 1rem = 52px */
+
+/* =========================================================
+ * 1. 统一模块左右内边距（对齐原则）
+ *    所有页面主模块一致：padding: 顶部 .5rem / 左右 .4rem / 底部 0
+ * ========================================================= */
+.mobile.page-home .mod-kv,
+.mobile.page-home .mod-about,
+.mobile.page-home .mod-introduce,
+.mobile.page-home .mod-case,
+.mobile.page-home .mod-partner,
+.mobile.page-home .mod-recommend {
+  padding-left: .4rem;
+  padding-right: .4rem;
+}
+
+/* =========================================================
+ * 2. KV 首屏（门面，最大视觉权重）
+ * ========================================================= */
+.mobile.page-home .mod-kv {
+  min-height: 70vh;
+  background-color: #000;
+}
+.mobile.page-home .kv-wrap {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mobile.page-home .kv-bd {
+  padding: 3rem .4rem;
+  width: 100%;
+  text-align: center;
+}
+.mobile.page-home .kv-title {
+  /* 门面最大：.62rem = 32px */
+  font-size: .62rem;
+  line-height: 1.15;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  letter-spacing: -.02rem;
+}
+.mobile.page-home .kv-title-text {
+  position: relative !important;
+  top: auto !important;
+  height: auto;
+  line-height: 1.15;
+}
+.mobile.page-home .kv-subtitle {
+  text-align: center;
+  font-size: .26rem;  /* 13.5px */
+  color: rgba(255,255,255,.6);
+  margin-top: .8rem;
+  letter-spacing: .02rem;
+}
+.mobile.page-home .kv-pic {
+  display: none !important;  /* 移动端隐藏所有装饰图标 */
+}
+.mobile.page-home .fr-header-right .btn-talk {
+  display: none;  /* 移动端隐藏"说两句"按钮，节省空间 */
+}
+
+/* =========================================================
+ * 3. About 模块（次视觉权重）
+ *    KV 标题 .62rem → About 主标题 .52rem
+ * ========================================================= */
+.mobile.page-home .mod-about {
+  min-height: 80vh;
+  background: var(--color-white-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem .4rem;
+}
+.mobile.page-home .mod-about .about-wrap {
+  position: relative !important;
+  height: auto;
+  top: auto !important;
+  left: auto !important;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.mobile.page-home .mod-about .about-inner {
+  position: relative !important;
+  width: 100%;
+  height: auto;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  right: auto;
+  margin: 0;
+  text-align: center;
+}
+.mobile.page-home .mod-about .about-image {
+  display: none !important;  /* 隐藏 3D 模型图 */
+}
+.mobile.page-home .mod-about .about-title {
+  /* 次大：.52rem = 27px */
+  font-size: .52rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -.01rem;
+}
+.mobile.page-home .mod-about .btn-more {
+  margin-top: 1.2rem;
+}
+
+/* =========================================================
+ * 4. Introduce 三阶段（视觉权重第三）
+ *    About .52rem → Introduce description .4rem
+ *    去掉 fixed 背景图（iOS Safari 滚动抖动）
+ * ========================================================= */
+.mobile.page-home .mod-introduce {
+  background-color: #000;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.mobile.page-home .mod-introduce:after {
+  height: auto;
+  display: none;
+}
+/* iOS Safari 抖动克星：移动端一律不用 fixed 背景 */
+.mobile.page-home .mod-introduce .introduce-background {
+  position: absolute !important;
+  transform: none !important;
+}
+.mobile.page-home .mod-introduce .introduce-background.fixed {
+  position: absolute !important;  /* 覆盖桌面 fixed 规则 */
+}
+.mobile.page-home .mod-introduce .introduce-foot {
+  display: none;
+}
+/* 三阶段：纵向堆叠，间距对称 1.5rem */
+.mobile.page-home .mod-introduce .introduce-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 .2rem;
+}
+.mobile.page-home .mod-introduce .introduce-item {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  left: auto !important;
+  right: auto !important;
+  margin-top: 0 !important;
+  padding-top: 0;
+}
+/* Experience（工作经历）也居中 */
+.mobile.page-home .mod-introduce .introduce-item.introduce-experience {
+  width: 100%;
+  text-align: left;  /* 时间轴左对齐更易读 */
+  padding-left: .5rem;
+  padding-right: .2rem;
+}
+/* 标题 */
+.mobile.page-home .mod-introduce .introduce-title {
+  font-size: .34rem;  /* 17.7px */
+  color: var(--color-brand2);
+  letter-spacing: .02rem;
+}
+/* 主描述（三阶段大标题，权重第三） */
+.mobile.page-home .mod-introduce .introduce-description {
+  /* 第三档：.4rem = 20.8px */
+  font-size: .4rem;
+  line-height: 1.2;
+  margin-top: .2rem;
+  color: #fff;
+  font-weight: 700;
+}
+.mobile.page-home .mod-introduce .introduce-description .ani-text {
+  margin: 0;
+  line-height: 1.2;
+}
+/* 英文副标题 */
+.mobile.page-home .mod-introduce .introduce-en {
+  margin-top: .5rem;
+  font-size: .26rem;  /* 13.5px，iOS 下限以上 */
+  color: rgba(255,255,255,.65);
+  letter-spacing: .01rem;
+}
+.mobile.page-home .mod-introduce .introduce-en .ani-text {
+  margin: -.1rem 0 0;
+  line-height: 1.5;
+}
+/* 强制显示（移动端不走桌面 GSAP active 触发） */
+.mobile.page-home .mod-introduce .introduce-item .ani-text-item {
+  visibility: visible;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* ---- Experience 时间轴（工作经历）可读性修复 ---- */
+.mobile.page-home .introduce-experience {
+  padding-top: 1rem;
+}
+.mobile.page-home .introduce-experience .exp-head {
+  border-bottom: 1px solid rgba(255,255,255,.2);
+  padding-bottom: .25rem;
+}
+.mobile.page-home .introduce-experience .exp-title {
+  font-size: .4rem;  /* 20.8px */
+  color: var(--color-brand2);
+  font-weight: 700;
+}
+.mobile.page-home .introduce-experience .exp-en {
+  font-size: .24rem;  /* 12.5px */
+  color: rgba(255,255,255,.5);
+}
+.mobile.page-home .introduce-experience .exp-list {
+  margin-top: .4rem;
+  padding-left: .5rem;
+}
+.mobile.page-home .introduce-experience .exp-item {
+  padding-bottom: .6rem;
+  padding-left: .2rem;
+  position: relative;
+}
+.mobile.page-home .introduce-experience .exp-item:not(:last-child):after {
+  left: -.2rem;
+  top: .25rem;
+  width: 2px;
+  height: calc(100% - .25rem);
+  opacity: 1 !important;
+}
+.mobile.page-home .introduce-experience .exp-dot {
+  left: -.38rem;
+  top: .3rem;
+  width: .16rem;
+  height: .16rem;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  box-shadow: 0 0 .2rem rgba(255,255,255,.6);
+}
+/* 时间（可读下限） */
+.mobile.page-home .introduce-experience .exp-period {
+  font-size: .24rem;  /* 12.5px */
+  color: rgba(255,255,255,.75);
+}
+/* 公司名（粗体更醒目） */
+.mobile.page-home .introduce-experience .exp-company {
+  margin-top: .15rem;
+  font-size: .32rem;  /* 16.6px */
+  color: #fff;
+  font-weight: 700;
+}
+/* 职位（品牌色区分） */
+.mobile.page-home .introduce-experience .exp-role {
+  margin-top: .08rem;
+  font-size: .26rem;  /* 13.5px */
+  color: var(--color-brand2);
+}
+/* 工作描述（iOS 下限以上） */
+.mobile.page-home .introduce-experience .exp-desc {
+  margin-top: .15rem;
+  font-size: .28rem;  /* 14.5px，≥iOS 下限 */
+  line-height: 1.55;
+  color: rgba(255,255,255,.7);
+}
+
+/* =========================================================
+ * 5. Case / Works（视觉权重第四）
+ *    纵向单列卡片，图片大图优先，标题清晰可读
+ * ========================================================= */
+.mobile.page-home .mod-case {
+  background: var(--color-white-bg);
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  position: relative;
+  margin-top: 0;
+}
+.mobile.page-home .mod-case:after,
+.mobile.page-home .mod-case .case-background {
+  display: none;
+}
+.mobile.page-home .mod-case .case-wrap {
+  position: relative;
+  height: auto;
+}
+/* 隐藏桌面的 GSAP fixed/fixed 背景 */
+.mobile.page-home .mod-case.fixed .case-background,
+.mobile.page-home .mod-case.fixed .case-wrap,
+.mobile.page-home .mod-case.leave .case-background,
+.mobile.page-home .mod-case.leave .case-wrap {
+  position: relative !important;
+  height: auto !important;
+}
+.mobile.page-home .mod-case .case-title {
+  position: relative;
+  width: 100%;
+  left: auto;
+  top: auto;
+  margin-bottom: 1rem;
+  font-size: .44rem;  /* 22.9px */
+  line-height: 1.2;
+  font-weight: 700;
+  text-align: center;
+  color: #000;
+}
+.mobile.page-home .mod-case .case-title img,
+.mobile.page-home .mod-case .case-title svg {
+  width: 6rem;  /* 放大 logo */
+  height: auto;
+  opacity: 1;
+}
+/* 纵向列表 */
+.mobile.page-home .mod-case .case-menu {
+  display: none;
+}
+.mobile.page-home .mod-case .case-list {
+  position: relative;
+  visibility: visible;
+  opacity: 1 !important;
+  transform: none !important;
+  height: auto;
+  padding: 0 !important;
+}
+.mobile.page-home .mod-case .case-list ul {
+  flex-direction: column;
+  gap: 1rem;
+  height: auto;
+  margin-top: 1rem;
+}
+.mobile.page-home .mod-case .case-list li {
+  width: 100%;
+  height: auto;
+  margin-left: 0;
+  margin-top: 0 !important;  /* 覆盖桌面 6 种 margin-top */
+}
+/* 卡片容器：规整的卡片边框阴影 */
+.mobile.page-home .mod-case .case-item-wrap {
+  position: relative !important;
+  top: auto !important;
+  width: 100%;
+  height: auto;
+  padding: .25rem;
+  border-radius: .12rem;
+  box-shadow: 0 .02rem .1rem rgba(0,0,0,.08);
+  box-sizing: border-box;
+  background: #fff;
+}
+/* 卡片图片 */
+.mobile.page-home .mod-case .case-item-pic {
+  width: 100%;
+  aspect-ratio: 4/3;  /* 移动端 4:3 比桌面 16:9 更饱满 */
+  border-radius: .08rem;
+  overflow: hidden;
+}
+/* 卡片底部信息 */
+.mobile.page-home .mod-case .case-item-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .12rem;
+  margin-top: .2rem;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  font-size: .24rem;  /* 12.5px */
+  color: #000;
+}
+.mobile.page-home .mod-case .case-item-title {
+  font-size: .32rem;  /* 16.6px，标题清晰 */
+  font-weight: 700;
+  color: #000;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  line-height: 1.3;
+}
+.mobile.page-home .mod-case .case-item-label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .1rem;
+}
+.mobile.page-home .mod-case .case-item-label span {
+  font-size: .22rem;  /* 11.4px，标签 ≥11px */
+  padding: .05rem .12rem;
+  background: #f5f5f5;
+  border: 1px solid #e8e8e8;
+  border-radius: .2rem;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* =========================================================
+ * 6. Partner logo（视觉权重第五）
+ *    4 列改 3 列（更大图片 + 更大触摸目标）
+ *    默认恢复色彩（无 grayscale）
+ * ========================================================= */
+.mobile.page-home .mod-partner {
+  background: var(--color-white-bg);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.mobile.page-home .mod-partner:after {
+  display: none;
+}
+.mobile.page-home .mod-partner .partner-wrap {
+  position: relative;
+  height: auto;
+  padding: 0;
+}
+/* 标题 */
+.mobile.page-home .mod-partner .partner-title {
+  position: relative;
+  width: 100%;
+  top: auto;
+  font-size: .44rem;  /* 22.9px */
+  line-height: 1.1;
+  font-weight: 700;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.mobile.page-home .mod-partner .partner-title-en {
+  font-size: .26rem;  /* 13.5px */
+  color: #999;
+  margin-left: .15rem;
+}
+/* logo 容器 */
+.mobile.page-home .mod-partner .partner-list {
+  position: relative;
+  height: auto;
+  margin-top: 0;
+}
+.mobile.page-home .mod-partner .partner-list-group {
+  height: auto;
+  margin-top: .2rem;
+  overflow: visible;
+}
+.mobile.page-home .mod-partner .partner-list-group .partner-list-scroll {
+  animation: none !important;
+}
+.mobile.page-home .mod-partner .partner-list-group ul {
+  flex-wrap: wrap;
+}
+.mobile.page-home .mod-partner .partner-list-group .partner-list-scroll ul:nth-child(2) {
+  display: none;  /* 隐藏重复副本 */
+}
+/* 3 列：每个 logo 占 (100% - 2×3%) / 3 ≈ 31.3% */
+.mobile.page-home .mod-partner .partner-list-group li {
+  width: 30.33%;
+  margin-left: 1.5%;
+  margin-bottom: 1.2rem;
+  height: .86rem;
+  filter: none !important;  /* 默认恢复色彩 */
+  opacity: 1;
+  cursor: default;
+}
+/* 3×5 大图标模式同样改 3 列 */
+.mobile.page-home .mod-partner .partner-list.large .partner-list-group li {
+  width: 30.33%;
+  margin-right: 1.5%;
+  height: 2.4rem;
+}
+
+/* =========================================================
+ * 7. Recommend（CTA，视觉权重第六）
+ *    保持全屏，但简化文字层级
+ * ========================================================= */
+.mobile.page-home .mod-recommend {
+  height: 100vh;
+  padding: 0;
+}
+.mobile.page-home .mod-recommend:after {
+  display: none;
+}
+.mobile.page-home .mod-recommend .recommend-background {
+  height: 100%;
+}
+.mobile.page-home .mod-recommend .recommend-wrap {
+  padding: 0;
+}
+.mobile.page-home .mod-recommend .recommend-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: auto;
+}
+.mobile.page-home .mod-recommend .recommend-title {
+  width: 4rem;
+  height: 2.3rem;
+  background-image: url(/assets/recommed-logo-h5-88ed641b.png);
+  background-size: 100% 100%;
+}
+.mobile.page-home .mod-recommend .recommend-description {
+  font-size: .32rem;  /* 16.6px */
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  margin-top: .6rem;
+  font-weight: 700;
+}
+.mobile.page-home .mod-recommend .btn-more {
+  font-weight: 700;
+  font-size: .28rem;  /* 14.5px */
+  padding: 0 .5rem;
+  height: .8rem;
+  line-height: .8rem;
+  display: inline-block;
+  text-align: center;
+}
+.mobile.page-home .mod-recommend .recommend-foot {
+  display: none;
+}
+
+/* =========================================================
+ * 8. 顶部导航栏（移动端简洁化）
+ * ========================================================= */
+.mobile .fr-header {
+  height: .9rem;
+  padding: 0 .4rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0,0,0,.4);
+}
+.mobile .fr-header .fr-header-right .btn-nav {
+  display: none;  /* 移动端隐藏导航菜单按钮 */
+}
+.mobile .fr-header-center {
+  font-size: .28rem;  /* 14.5px */
+  color: #fff;
+}
+.mobile.page-home .fr-header-center {
+  color: #fff;
+}
+.mobile.page-home .header-white .fr-header-center,
+.mobile.page-home .header-active .fr-header-center {
+  color: #000;
+}
+/* 联系按钮：移动端固定右下角，更小 */
+.mobile .contact-button {
+  width: auto;
+  padding: 0 .4rem;
+  height: .8rem;
+  line-height: .8rem;
+  font-size: .26rem;  /* 13.5px */
+  bottom: calc(env(safe-area-inset-bottom) + .4rem);
+  right: calc(env(safe-area-inset-right) + .4rem);
+  border-radius: .4rem;
+}

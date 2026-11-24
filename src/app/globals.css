@@ -1,4 +1,6 @@
 @import "../components/sites/choicedesign/choicedesign.css";
+/* 移动端覆盖：后加载 → 更高优先级 */
+@import "../components/sites/choicedesign/mobile-overrides.css";
 
 *,
 *::before,
