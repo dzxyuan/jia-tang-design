@@ -36,8 +36,8 @@ body{word-wrap:break-word;font-family:var(--font-family-base);font-size:var(--fo
 html{font-family:var(--cp-font-family-system);-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
 html,body{scrollbar-width:none;-ms-overflow-style:none}
 html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;width:0;height:0}
-html,body{overflow-x:hidden;overflow-y:auto}
-body{margin:0;overflow:overlay}
+html,body{margin:0;padding:0;overflow-x:hidden;overflow-y:auto}
+/* 注意：不设 overflow: overlay — 废弃属性，Safari 不支持会 fallback 到 visible */
 .fr-wrapper{width:100%;position:relative}
 .fr-container{position:relative;width:100%;z-index:2}
 .fr-bg{position:absolute;left:0;right:0;height:100%;-webkit-user-select:none;-moz-user-select:none;user-select:none}

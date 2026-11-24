@@ -11,7 +11,6 @@ html, body {
   -webkit-text-size-adjust: 100%; /* 禁止 iOS 自动放大文字 */
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent; /* 去掉点击闪烁 */
-  -webkit-touch-callout: none;
 }
 
 button,
@@ -23,10 +22,8 @@ a,
 }
 
 body {
-  margin: 0;
-  padding: 0;
   background: #000;
-  overscroll-behavior-y: none; /* 防止下拉刷新/橡皮筋效果干扰 */
+  /* 注意：不要在这里重复 margin:0 / padding:0 — choicedesign.css 里已经有了 */
 }
 
 a {
@@ -58,14 +55,16 @@ button {
   cursor: pointer;
 }
 
-/* ---- iOS 安全区 ---- */
-.mobile {
+/* ---- iOS 安全区 ----
+   注意：padding 加在 body 上，不要加在 html 上，
+   否则会干扰 100vh 计算和 body 滚动上下文 */
+.mobile body {
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
 }
 /* 固定在顶部的元素再叠加一次安全区 */
 .mobile .fr-header {
-  padding-top: env(safe-area-inset-top);
+  padding-top: calc(var(--padding-1) + env(safe-area-inset-top));
 }
 /* 固定在底部的联系按钮避开 home indicator */
 .mobile .contact-button {
