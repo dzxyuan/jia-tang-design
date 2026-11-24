@@ -3,18 +3,26 @@
  * 所有 PC 端布局/字号/交互完全不受影响
  * 不需要 JS 检测，标准响应式做法
  *
- * 设计原则：
- *   1. 可读性：正文 ≥ 14px（iOS 可阅读下限），标签 ≥ 11px
- *   2. 对比：KV(32px) > About(27px) > Introduce(20px) > Case/Partner(22px) > 正文(14.5px) > 标签(11px)
- *   3. 对齐：统一左右 padding = .4rem；模块间距对称
- *   4. 亲密：卡片化分组；图片 4:3 更饱满
- *   5. 交互：去掉 iOS fixed 抖动；触摸目标 ≥ 48px
+ * 所有规则都带 !important 以覆盖 GSAP 内联样式
  * ========================================================= */
 
 @media (max-width: 768px) {
 
-/* ---- 1. 全局：安全区 + 触摸友好 ---- */
-.mobile body {
+/* ========== 全局重置 ========== */
+html, body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+button, a, [role="button"] {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+img { -webkit-user-drag: none; user-select: none; }
+
+/* ========== 安全区 ========== */
+body {
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
 }
@@ -22,318 +30,366 @@
   padding-top: calc(var(--padding-1) + env(safe-area-inset-top));
 }
 .contact-button {
-  bottom: calc(env(safe-area-inset-bottom) + .4rem);
-  right: calc(env(safe-area-inset-right) + .4rem);
+  bottom: calc(env(safe-area-inset-bottom) + .4rem) !important;
+  right: calc(env(safe-area-inset-right) + .4rem) !important;
 }
 
-/* ---- 2. 顶部导航简化 ---- */
+/* ========== 页边距统一 ========== */
+/* 所有首页主模块统一左右 padding = .4rem (iPhone 14 约 21px) */
+.page-home .mod-kv,
+.page-home .mod-about,
+.page-home .mod-introduce,
+.page-home .mod-case,
+.page-home .mod-partner,
+.page-home .mod-recommend {
+  padding-left: .4rem !important;
+  padding-right: .4rem !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* ========== 顶部导航 ========== */
 .fr-header {
-  height: .9rem;
-  padding: 0 .4rem;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background: rgba(0,0,0,.4);
+  height: .9rem !important;
+  padding: 0 .4rem !important;
+  background: rgba(0,0,0,.5) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
+.fr-header .fr-header-right .btn-talk,
 .fr-header .fr-header-right .btn-nav {
-  display: none;
-}
-.fr-header .fr-header-right .btn-talk {
-  display: none;
+  display: none !important;
 }
 .fr-header-center {
-  font-size: .28rem;
-  color: #fff;
+  font-size: .28rem !important;
+  color: #fff !important;
 }
 .page-about .fr-header-center,
 .header-white .fr-header-center,
 .header-active .fr-header-center {
-  color: #000;
+  color: #000 !important;
 }
 .contact-button {
-  width: auto;
-  padding: 0 .4rem;
-  height: .8rem;
-  line-height: .8rem;
-  font-size: .26rem;
-  border-radius: .4rem;
+  width: auto !important;
+  padding: 0 .4rem !important;
+  height: .8rem !important;
+  line-height: .8rem !important;
+  font-size: .26rem !important;
+  border-radius: .4rem !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* ---- 3. KV 首屏（门面最大权重） ---- */
+/* =============================================================
+ * 1. KV 首屏 — 3 行标题加大 + 页面占比提升
+ * ============================================================= */
 .page-home .mod-kv {
-  min-height: 70vh;
-  background-color: #000;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  min-height: 70vh !important;
+  background-color: #000 !important;
+  position: relative !important;
+  height: auto !important;
 }
 .page-home .kv-wrap {
   position: relative !important;
   height: auto !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  top: auto !important;
 }
 .page-home .kv-bd {
   position: relative !important;
   height: auto !important;
   top: auto !important;
-  padding: 3rem .4rem;
-  width: 100%;
-  text-align: center;
+  padding: 4rem .4rem !important;
+  width: 100% !important;
+  text-align: center !important;
 }
+/* 父容器控制整体宽度 */
 .page-home .kv-title {
-  /* 门面最大：.62rem = 32px */
-  font-size: .62rem;
-  line-height: 1.15;
-  font-weight: 700;
-  text-align: center;
   position: relative !important;
   top: auto !important;
   left: auto !important;
   transform: none !important;
-  width: 100%;
-  height: auto;
-  margin: 0;
-  letter-spacing: -.02rem;
-  color: #fff;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  text-align: center !important;
 }
+/* 3 行标题各自独立控制 */
 .page-home .kv-title-text {
   position: relative !important;
   top: auto !important;
-  height: auto;
-  line-height: 1.15;
-  left: 0 !important;
+  left: auto !important;
+  height: auto !important;
+  line-height: 1.1 !important;
+  margin: 0 !important;
 }
+/* 第一行："加糖" — 最大 */
+.page-home .kv-title-1 {
+  font-size: .88rem !important;  /* 约 46px */
+  font-weight: 800 !important;
+  letter-spacing: -.04rem !important;
+  color: #fff !important;
+  position: relative !important;
+  top: auto !important;
+  line-height: 1.05 !important;
+  height: auto !important;
+}
+/* 第二行："#UI设计" */
+.page-home .kv-title-2 {
+  font-size: .72rem !important;  /* 约 37px */
+  font-weight: 700 !important;
+  letter-spacing: -.03rem !important;
+  color: #fff !important;
+  margin-top: .2rem !important;
+  line-height: 1.1 !important;
+  position: relative !important;
+  top: auto !important;
+  height: auto !important;
+}
+/* 第三行：装饰性 "A" — 可隐藏或缩小 */
+.page-home .kv-title-3 {
+  display: none !important;  /* 移动端隐藏单独的装饰字母 */
+}
+/* 装饰图标（猫/头像/咖啡杯）全部隐藏 */
+.page-home .kv-pic,
 .page-home .kv-title-brackets,
 .page-home .kv-title-bottom,
 .page-home .kv-title-icon {
-  display: none !important;  /* 移动端隐藏 SVG 装饰 */
+  display: none !important;
 }
 .page-home .kv-subtitle {
-  text-align: center;
-  font-size: .26rem;  /* 13.5px */
-  color: rgba(255,255,255,.6);
-  margin-top: .8rem;
-  letter-spacing: .02rem;
-}
-.page-home .kv-pic {
-  display: none !important;  /* 所有装饰图标隐藏 */
+  font-size: .26rem !important;
+  color: rgba(255,255,255,.55) !important;
+  margin-top: 1rem !important;
+  text-align: center !important;
+  letter-spacing: .02rem !important;
 }
 
-/* ---- 4. About（次视觉权重） ---- */
+/* =============================================================
+ * 2. About — 隐藏 3D 模型 + 居中文字
+ * ============================================================= */
 .page-home .mod-about {
-  min-height: 80vh;
-  background: var(--color-white-bg);
-  padding: 3rem .4rem;
+  min-height: 80vh !important;
+  background: var(--color-white-bg) !important;
   position: relative !important;
   height: auto !important;
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
 }
 .page-home .mod-about .about-wrap {
   position: relative !important;
-  height: auto !important;
   top: auto !important;
   left: auto !important;
+  height: auto !important;
   padding: 0 !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2.5rem !important;
 }
-.page-home .mod-about.fixed .about-wrap,
-.page-home .mod-about.leave .about-wrap {
-  position: relative !important;
+/* 隐藏 3D 模型图（无论 class 名） */
+.page-home .mod-about .about-image,
+.page-home .mod-about img {
+  display: none !important;
 }
 .page-home .mod-about .about-inner {
   position: relative !important;
-  width: 100%;
-  height: auto;
   top: auto !important;
   left: auto !important;
   bottom: auto !important;
   right: auto !important;
-  margin: 0;
-  text-align: center;
-}
-.page-home .mod-about .about-image {
-  display: none !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  text-align: center !important;
 }
 .page-home .mod-about .about-title {
-  /* 次大：.52rem = 27px */
-  font-size: .52rem;
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -.01rem;
+  font-size: .52rem !important;  /* 约 27px */
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  letter-spacing: -.01rem !important;
+  position: relative !important;
+  top: auto !important;
 }
 .page-home .mod-about .btn-more {
-  margin-top: 1.2rem;
+  margin-top: 1.5rem !important;
 }
 
-/* ---- 5. Introduce 三阶段（第三权重） ---- */
+/* =============================================================
+ * 3. Introduce 三阶段 + Experience 工作经历
+ * ============================================================= */
 .page-home .mod-introduce {
-  background-color: #000;
-  padding: 3rem .4rem;
+  background-color: #000 !important;
+  position: relative !important;
   height: auto !important;
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
 }
-.page-home .mod-introduce:after {
-  display: none !important;
-}
-/* iOS Safari 抖动克星：一律不用 fixed 背景 */
+.page-home .mod-introduce:after,
+.page-home .mod-introduce .introduce-foot,
 .page-home .mod-introduce .introduce-background {
+  display: none !important;
   position: absolute !important;
   transform: none !important;
 }
-.page-home .mod-introduce .introduce-background.fixed {
-  position: absolute !important;  /* 强制覆盖桌面 fixed */
-}
 .fixed .mod-introduce .introduce-wrap,
-.fixed .mod-introduce .introduce-background,
-.fixed .mod-introduce .introduce-foot {
-  position: absolute !important;  /* 覆盖桌面 fixed 规则 */
+.fixed .mod-introduce .introduce-background {
+  position: absolute !important;  /* 强制覆盖桌面 fixed 规则 */
 }
 .page-home .mod-introduce .introduce-wrap {
   position: relative !important;
   height: auto !important;
 }
-.page-home .mod-introduce .introduce-foot {
-  display: none;
-}
 /* 三阶段：纵向堆叠，对称 gap */
 .page-home .mod-introduce .introduce-list {
   position: relative !important;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  padding: 0 .2rem;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2.8rem !important;
+  padding: 0 .2rem !important;
   height: auto !important;
+  margin: 0 !important;
 }
 .page-home .mod-introduce .introduce-item {
   position: relative !important;
-  width: 100%;
-  text-align: center;
+  width: 100% !important;
+  text-align: left !important;  /* 左对齐页边距 */
   left: auto !important;
   right: auto !important;
   top: auto !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
-.page-home .mod-introduce .introduce-item.introduce-experience {
-  width: 100%;
-  text-align: left;
-  padding-left: .5rem;
-  padding-right: .2rem;
-}
-/* 标题 */
+/* 阶段标题 */
 .page-home .mod-introduce .introduce-title {
-  font-size: .34rem;  /* 17.7px */
-  color: var(--color-brand2);
-  letter-spacing: .02rem;
+  font-size: .34rem !important;  /* 约 17.7px */
+  color: var(--color-brand2) !important;
+  letter-spacing: .02rem !important;
 }
-/* 主描述（三阶段大标题） */
+/* 阶段大描述（第三视觉权重） */
 .page-home .mod-introduce .introduce-description {
-  /* 第三档：.4rem = 20.8px */
-  font-size: .4rem;
-  line-height: 1.2;
-  margin-top: .2rem;
-  color: #fff;
-  font-weight: 700;
+  font-size: .4rem !important;  /* 约 20.8px */
+  line-height: 1.2 !important;
+  margin-top: .2rem !important;
+  color: #fff !important;
+  font-weight: 700 !important;
 }
 .page-home .mod-introduce .introduce-description .ani-text {
-  margin: 0;
-  line-height: 1.2;
+  margin: 0 !important;
+  line-height: 1.2 !important;
 }
-/* 英文副标题 */
 .page-home .mod-introduce .introduce-en {
-  margin-top: .5rem;
-  font-size: .26rem;  /* 13.5px */
-  color: rgba(255,255,255,.65);
-  letter-spacing: .01rem;
+  margin-top: .5rem !important;
+  font-size: .26rem !important;  /* 约 13.5px ≥iOS 下限 */
+  color: rgba(255,255,255,.65) !important;
+  letter-spacing: .01rem !important;
 }
 .page-home .mod-introduce .introduce-en .ani-text {
-  margin: -.1rem 0 0;
-  line-height: 1.5;
+  margin: -.1rem 0 0 !important;
+  line-height: 1.5 !important;
 }
-/* 强制显示（移动端不走桌面 GSAP active 触发） */
-.page-home .mod-introduce .introduce-item .ani-text-item {
+/* 强制显示所有动画文字 */
+.page-home .mod-introduce .ani-text-item {
   visibility: visible !important;
   transform: none !important;
   animation: none !important;
+  opacity: 1 !important;
+}
+.page-home .mod-introduce .ani-text {
+  visibility: visible !important;
 }
 
-/* ---- Experience 时间轴 ---- */
+/* ---- Experience 时间轴左对齐 ---- */
 .page-home .introduce-experience {
-  padding-top: 1rem;
+  padding-top: 1rem !important;
+  padding-left: .5rem !important;
 }
 .page-home .introduce-experience .exp-head {
-  border-bottom: 1px solid rgba(255,255,255,.2);
-  padding-bottom: .25rem;
+  border-bottom: 1px solid rgba(255,255,255,.2) !important;
+  padding-bottom: .25rem !important;
 }
 .page-home .introduce-experience .exp-title {
-  font-size: .4rem;  /* 20.8px */
-  color: var(--color-brand2);
-  font-weight: 700;
+  font-size: .4rem !important;  /* 约 20.8px */
+  color: var(--color-brand2) !important;
+  font-weight: 700 !important;
 }
 .page-home .introduce-experience .exp-en {
-  font-size: .24rem;  /* 12.5px */
-  color: rgba(255,255,255,.5);
+  font-size: .24rem !important;
+  color: rgba(255,255,255,.5) !important;
 }
 .page-home .introduce-experience .exp-list {
-  margin-top: .4rem;
-  padding-left: .5rem;
+  margin-top: .5rem !important;
+  padding-left: .3rem !important;
 }
 .page-home .introduce-experience .exp-item {
-  padding-bottom: .6rem;
-  padding-left: .2rem;
-}
-.page-home .introduce-experience .exp-item:not(:last-child):after {
-  left: -.2rem;
-  top: .25rem;
-  width: 2px;
-  height: calc(100% - .25rem);
-  opacity: 1 !important;
+  padding-bottom: .7rem !important;
+  padding-left: .3rem !important;
+  position: relative !important;
 }
 .page-home .introduce-experience .exp-dot {
-  left: -.38rem;
-  top: .3rem;
-  width: .16rem;
-  height: .16rem;
+  position: absolute !important;
+  left: -.4rem !important;
+  top: .35rem !important;
+  width: .16rem !important;
+  height: .16rem !important;
   opacity: 1 !important;
   transform: scale(1) !important;
-  box-shadow: 0 0 .2rem rgba(255,255,255,.6);
+  box-shadow: 0 0 .15rem rgba(255,255,255,.5) !important;
+}
+.page-home .introduce-experience .exp-item:not(:last-child):after {
+  left: -.32rem !important;
+  top: .45rem !important;
+  width: 2px !important;
+  height: calc(100% - .35rem) !important;
+  opacity: 1 !important;
+  position: absolute !important;
+  content: '' !important;
+  background: rgba(255,255,255,.3) !important;
 }
 .page-home .introduce-experience .exp-period {
-  font-size: .24rem;
-  color: rgba(255,255,255,.75);
+  font-size: .24rem !important;
+  color: rgba(255,255,255,.75) !important;
 }
 .page-home .introduce-experience .exp-company {
-  margin-top: .15rem;
-  font-size: .32rem;  /* 16.6px */
-  color: #fff;
-  font-weight: 700;
+  margin-top: .15rem !important;
+  font-size: .32rem !important;  /* 约 16.6px */
+  color: #fff !important;
+  font-weight: 700 !important;
 }
 .page-home .introduce-experience .exp-role {
-  margin-top: .08rem;
-  font-size: .26rem;  /* 13.5px */
-  color: var(--color-brand2);
+  margin-top: .08rem !important;
+  font-size: .26rem !important;  /* 约 13.5px */
+  color: var(--color-brand2) !important;
 }
 .page-home .introduce-experience .exp-desc {
-  margin-top: .15rem;
-  font-size: .28rem;  /* 14.5px ≥iOS 下限 */
-  line-height: 1.55;
-  color: rgba(255,255,255,.7);
+  margin-top: .15rem !important;
+  font-size: .28rem !important;  /* 约 14.5px ≥iOS 下限 */
+  line-height: 1.6 !important;
+  color: rgba(255,255,255,.7) !important;
 }
 
-/* ---- 6. Case / Works（第四权重） ---- */
+/* =============================================================
+ * 4. Case / Works — SVG 隐藏 + 撑满宽度 + 卡片间距减小
+ * ============================================================= */
 .page-home .mod-case {
-  background: var(--color-white-bg);
-  padding: 2rem .4rem 3rem;
+  background: var(--color-white-bg) !important;
   position: relative !important;
-  margin-top: 0 !important;
   height: auto !important;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  margin-top: 0 !important;
 }
-.page-home .mod-case:after {
-  display: none !important;
-}
+.page-home .mod-case:after,
 .page-home .mod-case .case-background {
   display: none !important;
-  -webkit-mask-image: none !important;
-  mask-image: none !important;
+}
+.page-home .mod-case .case-wrap {
+  position: relative !important;
+  height: auto !important;
+  top: auto !important;
 }
 .page-home .mod-case.fixed .case-wrap,
 .page-home .mod-case.fixed .case-background,
@@ -342,128 +398,141 @@
   position: relative !important;
   height: auto !important;
 }
-.page-home .mod-case .case-wrap {
-  position: relative !important;
-  height: auto !important;
-}
+/* 标题：隐藏 SVG sprite 图标 */
 .page-home .mod-case .case-title {
   position: relative !important;
   width: 100% !important;
-  left: auto !important;
   top: auto !important;
-  margin-bottom: 1rem;
-  font-size: .44rem;  /* 22.9px */
-  line-height: 1.2;
-  font-weight: 700;
-  text-align: center;
-  color: #000;
-  pointer-events: auto !important;
+  left: auto !important;
+  margin-bottom: 1.2rem !important;
+  font-size: .48rem !important;  /* 约 25px */
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  color: #000 !important;
 }
-.page-home .mod-case .case-title img,
-.page-home .mod-case .case-title svg {
-  width: 6rem;
-  height: auto;
-  opacity: 1 !important;
+/* 隐藏 case-title 里的 SVG sprite */
+.page-home .mod-case .case-title svg,
+.page-home .mod-case .case-title img {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
+/* 菜单 tab 隐藏 */
 .page-home .mod-case .case-menu {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  transform: none !important;
 }
+/* 列表容器撑满 */
 .page-home .mod-case .case-list {
   position: relative !important;
   visibility: visible !important;
   opacity: 1 !important;
   transform: none !important;
   height: auto !important;
+  width: 100% !important;
   padding: 0 !important;
   overflow: visible !important;
+  top: auto !important;
+  left: auto !important;
 }
+/* ul 纵向排列，撑满宽度，间距减小 */
 .page-home .mod-case .case-list ul {
   flex-direction: column !important;
-  gap: 1rem;
-  height: auto !important;
-  margin-top: 1rem;
   width: 100% !important;
+  height: auto !important;
+  gap: .6rem !important;  /* 卡片间距减小 */
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
 }
+/* li 撑满宽度，消除桌面的绝对定位 margin-top */
 .page-home .mod-case .case-list li {
   width: 100% !important;
   height: auto !important;
-  margin: 0 0 .4rem 0 !important;
+  margin: 0 !important;
+  margin-top: 0 !important;  /* 覆盖桌面 6 种 margin-top */
+  padding: 0 !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
 }
+/* 卡片容器：相对定位，覆盖 GSAP inline top */
 .page-home .mod-case .case-list li .case-item-wrap {
   position: relative !important;
   top: auto !important;
-  margin-top: 0 !important;
-  width: 100%;
-  height: auto;
-  padding: .25rem;
-  border-radius: .12rem;
-  box-shadow: 0 .02rem .1rem rgba(0,0,0,.08);
-  box-sizing: border-box;
-  background: #fff;
+  left: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  height: auto !important;
+  padding: .2rem !important;
+  border-radius: .1rem !important;
+  box-shadow: 0 .01rem .06rem rgba(0,0,0,.06) !important;
+  box-sizing: border-box !important;
+  background: #fff !important;
   visibility: visible !important;
-}
-.page-home .mod-case .case-list li:nth-child(n) .case-item-wrap {
-  margin-top: 0 !important;  /* 覆盖桌面 6 种 margin-top */
+  opacity: 1 !important;
 }
 .page-home .mod-case .case-item-pic {
-  width: 100%;
-  aspect-ratio: 4/3;  /* 移动端 4:3 更饱满 */
-  border-radius: .08rem;
-  overflow: hidden;
+  width: 100% !important;
+  aspect-ratio: 4/3 !important;
+  border-radius: .06rem !important;
+  overflow: hidden !important;
 }
 .page-home .mod-case .case-item-bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: .12rem;
-  margin-top: .2rem;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: .1rem !important;
+  margin-top: .2rem !important;
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
-  font-size: .24rem;
-  color: #000;
-  line-height: 1.4;
+  font-size: .24rem !important;
+  color: #000 !important;
+  line-height: 1.4 !important;
 }
 .page-home .mod-case .case-item-title {
-  font-size: .32rem;  /* 16.6px */
-  font-weight: 700;
-  color: #000;
+  font-size: .32rem !important;  /* 约 16.6px */
+  font-weight: 700 !important;
+  color: #000 !important;
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: clip !important;
-  line-height: 1.3;
+  line-height: 1.3 !important;
   width: auto !important;
 }
 .page-home .mod-case .case-item-label {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .1rem;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: .08rem !important;
 }
 .page-home .mod-case .case-item-label span {
-  font-size: .22rem;  /* 11.4px ≥iOS 下限 */
-  padding: .05rem .12rem;
-  background: #f5f5f5;
-  border: 1px solid #e8e8e8;
-  border-radius: .2rem;
-  line-height: 1.4;
-  color: #666;
-  margin-left: 0 !important;
-  display: inline-block;
-}
-.page-home .contact-button {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
+  font-size: .22rem !important;
+  padding: .04rem .1rem !important;
+  background: #f5f5f5 !important;
+  border: 1px solid #e8e8e8 !important;
+  border-radius: .16rem !important;
+  line-height: 1.4 !important;
+  color: #666 !important;
+  margin: 0 !important;
+  display: inline-block !important;
 }
 
-/* ---- 7. Partner logo（第五权重） ---- */
+/* =============================================================
+ * 5. AIGC 作品（Partner） — 双列瀑布流 + 只渲染第一组
+ * ============================================================= */
 .page-home .mod-partner {
-  background: var(--color-white-bg);
-  padding: 2rem .4rem;
+  background: var(--color-white-bg) !important;
+  position: relative !important;
   height: auto !important;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  margin-top: 0 !important;
 }
 .page-home .mod-partner:after {
   display: none !important;
@@ -472,155 +541,247 @@
   position: relative !important;
   height: auto !important;
   padding: 0 !important;
+  top: auto !important;
 }
 .page-home .mod-partner.fixed .partner-wrap,
 .page-home .mod-partner.leave .partner-wrap {
   position: relative !important;
 }
+/* 标题 */
 .page-home .mod-partner .partner-title {
   position: relative !important;
   width: 100% !important;
   top: auto !important;
-  font-size: .44rem;  /* 22.9px */
-  line-height: 1.1;
-  font-weight: 700;
-  text-align: center;
-  justify-content: center;
-  margin-bottom: 1rem;
+  font-size: .48rem !important;  /* 约 25px */
+  line-height: 1.1 !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  justify-content: center !important;
+  margin-bottom: 1.5rem !important;
 }
 .page-home .mod-partner .partner-title-en {
-  font-size: .26rem;  /* 13.5px */
-  color: #999;
-  margin-left: .15rem;
+  font-size: .26rem !important;
+  color: #999 !important;
+  margin-left: .15rem !important;
 }
-.page-home .mod-partner .partner-list {
+/* Partner large 容器 */
+.page-home .mod-partner .partner-list.large {
   position: relative !important;
   height: auto !important;
-  margin-top: 0 !important;
-  padding: 0 !important;
   top: auto !important;
+  width: 100% !important;
+  padding: 0 !important;
   container-type: normal !important;
-}
-.page-home .mod-partner .partner-list-group {
-  height: auto !important;
-  margin-top: .2rem !important;
   overflow: visible !important;
 }
-.page-home .mod-partner .partner-list-group .partner-list-scroll {
-  animation: none !important;
+/* 只显示第一个 partner-list-group，隐藏其他组和滚动副本 */
+.page-home .mod-partner .partner-list.large .partner-list-group {
+  height: auto !important;
+  margin-top: 0 !important;
+  overflow: visible !important;
+  position: relative !important;
+  top: auto !important;
+  margin-bottom: .8rem !important;
 }
-.page-home .mod-partner .partner-list-group ul {
-  flex-wrap: wrap !important;
-}
-.page-home .mod-partner .partner-list-group .partner-list-scroll ul:nth-child(2) {
+/* 隐藏除第一个外的所有 partner-list-group */
+.page-home .mod-partner .partner-list.large .partner-list-group:nth-child(n+2) {
   display: none !important;
 }
-/* 3 列：每列约 30%，gap 3%，触摸目标大 */
-.page-home .mod-partner .partner-list-group li {
-  width: 30.33% !important;
-  height: 2.4rem !important;
-  margin: 0 1.5% 1.2rem 1.5% !important;
-  filter: none !important;
-  cursor: default !important;
+/* 隐藏每组的第二个 ul（滚动副本） */
+.page-home .mod-partner .partner-list.large .partner-list-group .partner-list-scroll ul:nth-child(2) {
+  display: none !important;
 }
-/* 3×5 大图标模式同样改 */
-.page-home .mod-partner .partner-list.large {
-  top: auto !important;
+/* 去掉滚动动画 */
+.page-home .mod-partner .partner-list.large .partner-list-group .partner-list-scroll {
+  animation: none !important;
+  transform: none !important;
+  position: relative !important;
   height: auto !important;
+  width: 100% !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
 }
+/* ul 改成 flex-wrap */
+.page-home .mod-partner .partner-list.large .partner-list-group ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  height: auto !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: .6rem !important;  /* 双列间距 */
+}
+/* 双列：li 宽 calc(50% - .3rem)，高自适应 */
 .page-home .mod-partner .partner-list.large .partner-list-group li {
-  width: 30.33% !important;
-  height: 2.4rem !important;
-  margin: 0 1.5% 1.2rem 1.5% !important;
+  width: calc(50% - .3rem) !important;
+  height: auto !important;
+  min-height: 3rem !important;
+  margin: 0 !important;
+  margin-bottom: .6rem !important;
+  filter: none !important;
+  opacity: 1 !important;
+  cursor: default !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+}
+.page-home .mod-partner .partner-list.large .partner-list-group li .ui-image {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 4/3 !important;
+  border-radius: .08rem !important;
+  overflow: hidden !important;
+}
+.page-home .mod-partner .partner-list.large .partner-list-group li img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
 
-/* ---- 8. Recommend CTA ---- */
+/* =============================================================
+ * 6. Recommend — 视频不拉伸 + 标题/按钮居中
+ * ============================================================= */
 .page-home .mod-recommend {
-  height: 100vh;
+  height: 100vh !important;
+  position: relative !important;
   padding: 0 !important;
+  margin-top: 0 !important;
 }
-.page-home .mod-recommend:after {
-  display: none !important;
-}
-.page-home .mod-recommend .recommend-wrap {
-  position: absolute !important;
-  top: 0; left: 0; right: 0; bottom: 0;
-  padding: 0 !important;
-}
-.page-home .mod-recommend .recommend-inner {
-  position: absolute !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 4rem;
-  height: auto;
-  margin: 0 !important;
-}
-.page-home .mod-recommend .recommend-title {
-  width: 4rem;
-  height: 2.3rem;
-  background-image: url(/assets/recommed-logo-h5-88ed641b.png);
-  background-size: 100% 100%;
-}
-.page-home .mod-recommend .recommend-description {
-  font-size: .32rem;  /* 16.6px */
-  width: 100% !important;
-  color: #fff;
-  text-align: center;
-  margin-top: .6rem !important;
-  font-weight: 700;
-}
-.page-home .mod-recommend .btn-more {
-  font-weight: 700;
-  font-size: .28rem;  /* 14.5px */
-  padding: 0 .5rem !important;
-  height: .8rem !important;
-  line-height: .8rem !important;
-  width: auto !important;
-  display: inline-block;
-  text-align: center;
-  margin: .5rem auto 0 !important;
-}
+.page-home .mod-recommend:after,
 .page-home .mod-recommend .recommend-foot {
   display: none !important;
 }
-
-/* ---- 9. 工作详情页（/works/[id]） ---- */
-.page-workdetail .mod-loading {
-  display: none !important;
+/* 背景容器 */
+.page-home .mod-recommend .recommend-background {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
 }
+/* 视频：保持比例，填满容器，不拉伸 */
+.page-home .mod-recommend .recommend-background video {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;  /* 关键：保持比例，裁剪填满 */
+  object-position: center !important;
+}
+/* 内容包裹层 */
+.page-home .mod-recommend .recommend-wrap {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+/* 内部内容块：水平+垂直居中 */
+.page-home .mod-recommend .recommend-inner {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+/* 标题 logo */
+.page-home .mod-recommend .recommend-title {
+  width: 5rem !important;
+  height: 2.8rem !important;
+  background-image: url(/assets/recommed-logo-h5-88ed641b.png) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+/* 描述文案 */
+.page-home .mod-recommend .recommend-description {
+  font-size: .34rem !important;
+  width: auto !important;
+  max-width: 90vw !important;
+  color: #fff !important;
+  text-align: center !important;
+  margin-top: .8rem !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.5) !important;
+}
+/* "进入游戏"按钮 */
+.page-home .mod-recommend .btn-more {
+  font-weight: 700 !important;
+  font-size: .3rem !important;
+  padding: 0 .6rem !important;
+  height: .9rem !important;
+  line-height: .9rem !important;
+  width: auto !important;
+  min-width: 3rem !important;
+  display: inline-block !important;
+  text-align: center !important;
+  margin-top: .8rem !important;
+  border: 2px solid #fff !important;
+  border-radius: .45rem !important;
+  color: #fff !important;
+  text-shadow: none !important;
+  background: transparent !important;
+}
+
+/* =============================================================
+ * 7. 工作详情页 (/works/[id])
+ * ============================================================= */
+.page-workdetail .mod-loading { display: none !important; }
 .page-workdetail .work-detail-wrap {
-  padding: 1.5rem .4rem 3rem;
+  padding: 1.5rem .4rem 3rem !important;
 }
 .page-workdetail .work-detail-title {
-  font-size: .44rem;  /* 22.9px */
-  line-height: 1.2;
-  font-weight: 700;
-  margin-top: 1.5rem;
-  text-align: center;
+  font-size: .44rem !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  margin-top: 1.5rem !important;
+  text-align: center !important;
 }
 .page-workdetail .work-detail-meta {
-  font-size: .24rem;
-  text-align: center;
-  margin-top: .3rem;
+  font-size: .24rem !important;
+  text-align: center !important;
+  margin-top: .3rem !important;
 }
 .page-workdetail .work-detail-body {
-  margin-top: 1.5rem;
-  font-size: .28rem;  /* 14.5px ≥iOS 下限 */
-  line-height: 1.7;
-  padding: 0;
+  margin-top: 1.5rem !important;
+  font-size: .28rem !important;  /* ≥iOS 下限 */
+  line-height: 1.7 !important;
+  padding: 0 !important;
 }
-.page-workdetail .work-detail-body p {
-  margin-bottom: .8rem;
-}
-.page-workdetail .work-detail-gallery {
-  margin-top: 2rem;
-}
+.page-workdetail .work-detail-body p { margin-bottom: .8rem !important; }
+.page-workdetail .work-detail-gallery { margin-top: 2rem !important; }
 .page-workdetail .work-detail-gallery img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
-  border-radius: .1rem;
+  width: 100% !important;
+  height: auto !important;
+  margin-bottom: 1rem !important;
+  border-radius: .08rem !important;
 }
 
 } /* end @media (max-width: 768px) */
